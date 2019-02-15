@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Stanislav Petrov</title>
+    <meta name="description" content="Stanislav Petrov">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Roboto+Mono" rel="stylesheet">
+    <style type="text/css">
+        body {
+            background-color: #f1f1f1;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.2em;
+            margin: 2em;
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0 0 0.2em 0;
+            text-shadow: 4px 4px 4px >aaa;
+        }
+        header code {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 2em;
+            margin: 0.5em 0 0 0;
+            padding: 0;
+        }
+        nav code, nav pre, nav p, nav a {
+            font-family:  'Roboto Mono', monospace;
+        }
+        div {
+            margin-top: 2em;
+        }
+        p {
+            margin: 0.5em 0 0 0;
+            padding: 0;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        a:hover {
+            color: grey;
+        }
+        #mail-body {
+            display: none;
+        }
+        .blink {
+            font-weight: 100;
+            font-size: 30px;
+            color: #2E3D48;
+            -webkit-animation: 1s blink step-end infinite;
+            -moz-animation: 1s blink step-end infinite;
+            -ms-animation: 1s blink step-end infinite;
+            -o-animation: 1s blink step-end infinite;
+            animation: 1s blink step-end infinite;
+        }
+        @keyframes "blink" {
+            from, to {
+                color: transparent;
+            }
+            50% {
+                color: black;
+            }
+        }
+        @-moz-keyframes blink {
+            from, to {
+                color: transparent;
+            }
+            50% {
+                color: black;
+            }
+        }
+        @-webkit-keyframes "blink" {
+            from, to {
+                color: transparent;
+            }
+            50% {
+                color: black;
+            }
+        }
+        @-ms-keyframes "blink" {
+            from, to {
+                color: transparent;
+            }
+            50% {
+                color: black;
+            }
+        }
+        @-o-keyframes "blink" {
+            from, to {
+                color: transparent;
+            }
+            50% {
+                color: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <code>&gt; whoami</code>
+        <h1>STANISLAV PETROV</h1>
+    </header>
+    <nav>
+        <div>
+            <p><code>&gt; pwd</code></p>
+            <p>/United Kingdom/London</p>
+        </div>
+        <div>
+            <p><code>&gt; echo $LINKEDIN</code></p>
+            <p><a href="https://uk.linkedin.com/in/sepetrov">https://uk.linkedin.com/in/sepetrov</a></p>
+        </div>
+        <div>
+            <p><code>&gt; git remote get-url origin</code></p>
+            <p><a href="https://github.com/sepetrov">https://github.com/sepetrov/sepetrov.git</a></p>
+        </div>
+        <div>
+            <p><code>&gt; ps</code></p>
+            <pre>
+  PID TTY          TIME CMD
+19486 pts/0    40:00:00 software-development -web
+24793 pts/1    05:00:00 motorcycle -on-road -on-track
+37151 pts/1    03:00:00 volleyball
+41485 pts/1    02:00:00 kiteboard
+52841 pts/1    01:00:00 wakeboard
+            </pre>
+        </div>
+        <div>
+            <script type="text/javascript">
+                function decode(a) {
+                    // ROT13 : a Caesar cipher
+                    // letter -> letter' such that code(letter') = (code(letter) + 13) modulo 26
+                    return a.replace(/[a-zA-Z]/g, function(c){
+                        return String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
+                    })
+                };
+                // decode(user) @ decode(domain) . decode(tld)
+                m = [
+                    decode("f.r.crgebi"),
+                    "&#64;",
+                    decode("tznvy"),
+                    "&#46;",
+                    decode("pbz"),
+                ].join("")
+            </script>
+            <p><code>&gt; mail --subject="Hello" <script type="text/javascript">document.write("<a href=" + decode("znvygb:") + m + ">" + m + "</a>");</script></code></p>
+<div id="mail-body">Cc:
+Hi Stan,
+<span class="blink">_</span></div>
+            <script type="text/javascript">
+                document.write("<pre><a href=" + decode("znvygb:") + m + ">" + document.getElementById("mail-body").innerHTML + "</a></pre>");
+            </script>
+        </div>
+    </nav>
+</body>
+</html>
+
