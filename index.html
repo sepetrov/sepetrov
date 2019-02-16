@@ -45,10 +45,6 @@
         pre a:hover {
             text-decoration: none;
         }
-
-        #mail-body {
-            display: none;
-        }
         .blink {
             font-weight: 100;
             font-size: 30px;
@@ -152,16 +148,11 @@
     </main>
     <footer>
         <code>&gt; mail --subject="Hello" <script type="text/javascript">document.write("<a href=" + decode("znvygb:") + m + ">" + m + "</a>");</script></code>
-        <div id="mail-body">
-            Cc:<br/>
-            Hi Stan,<br/>
-            <span class="blink">_</span>
-        </div>
-        <p>
-            <script type="text/javascript">
-                document.write("<a href=" + decode("znvygb:") + m + ">" + document.getElementById("mail-body").innerHTML + "</a>");
-            </script>
-        </p>
+        <pre>
+Cc:
+Hi Stan,
+<span class="blink">_</span>
+        </pre>
     </footer>
 </body>
 </html>
