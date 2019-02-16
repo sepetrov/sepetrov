@@ -8,7 +8,7 @@
     <style type="text/css">
         body {
             background-color: #f1f1f1;
-            font-family: 'Josefin Sans', sans-serif;
+            font-family:  'Roboto Mono', monospace;
             font-size: 1.2em;
             line-height: 1.25;
             margin: 2em;
@@ -18,29 +18,24 @@
             font-family: 'Josefin Sans', sans-serif;
             font-size: 4em;
             margin: 0.2em 0;
-            text-shadow: 4px 4px 4px >aaa;
+            text-shadow: 4px 4px 4px #aaa;
             font-weight: 700;
         }
-        header code {
-                padding: 0;
-        }
-        code, nav code, nav pre, nav p, nav a {
+        code, pre {
             font-family:  'Roboto Mono', monospace;
         }
-        div {
+        dt {
+            color:#666565;
+            font-size: 18px;
+            font-weight: 300;
             margin-top: 2em;
         }
-        p {
+        dd {
             margin: 0.5em 0 0 0;
             padding: 0;
         }
         a {
             text-decoration: none;
-        }
-        code {
-            color:#666565;
-            font-size: 18px;
-            font-weight: 300;
         }
         a:hover {
             text-decoration: underline;
@@ -103,62 +98,60 @@
             }
         }
     </style>
+    <script type="text/javascript">
+        function decode(a) {
+            // ROT13 : a Caesar cipher
+            // letter -> letter' such that code(letter') = (code(letter) + 13) modulo 26
+            return a.replace(/[a-zA-Z]/g, function(c){
+                return String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
+            })
+        };
+        // decode(user) @ decode(domain) . decode(tld)
+        m = [
+            decode("f.r.crgebi"),
+            "&#64;",
+            decode("tznvy"),
+            "&#46;",
+            decode("pbz"),
+        ].join("")
+    </script>
 </head>
 <body>
     <header>
-        <code>&gt; whoami</code>
-        <h1>STANISLAV PETROV</h1>
+        <dl>
+            <dt><code>&gt; whoami</code></dt>
+            <dd><h1>STANISLAV PETROV</h1></dd>
+        </dl>
     </header>
     <nav>
-        <div>
-            <p><code>&gt; pwd</code></p>
-            <p>/United Kingdom/London</p>
-        </div>
-        <div>
-            <p><code>&gt; echo $LINKEDIN</code></p>
-            <p><a href="https://uk.linkedin.com/in/sepetrov">https://uk.linkedin.com/in/sepetrov</a></p>
-        </div>
-        <div>
-            <p><code>&gt; git remote get-url origin</code></p>
-            <p><a href="https://github.com/sepetrov">https://github.com/sepetrov/sepetrov.git</a></p>
-        </div>
-        <div>
-            <p><code>&gt; ps</code></p>
-            <pre>
+        <dl>
+            <dt><code>&gt; pwd</code></dt>
+            <dd>/United Kingdom/London</dd>
+            <dt><code>&gt; echo $LINKEDIN</code></dt>
+            <dd><a href="https://uk.linkedin.com/in/sepetrov">https://uk.linkedin.com/in/sepetrov</a></dd>
+            <dt><code>&gt; git remote get-url origin</code></dt>
+            <dd><a href="https://github.com/sepetrov">https://github.com/sepetrov/sepetrov.git</a></dd>
+            <dt><code>&gt; ps</code></dt>
+            <dd><pre>
   PID TTY          TIME CMD
 19486 pts/0    40:00:00 software-development -web
 24793 pts/1    05:00:00 motorcycle -on-road -on-track
 37151 pts/1    03:00:00 volleyball
 41485 pts/1    02:00:00 kiteboard
 52841 pts/1    01:00:00 wakeboard
-            </pre>
-        </div>
-        <div>
-            <script type="text/javascript">
-                function decode(a) {
-                    // ROT13 : a Caesar cipher
-                    // letter -> letter' such that code(letter') = (code(letter) + 13) modulo 26
-                    return a.replace(/[a-zA-Z]/g, function(c){
-                        return String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
-                    })
-                };
-                // decode(user) @ decode(domain) . decode(tld)
-                m = [
-                    decode("f.r.crgebi"),
-                    "&#64;",
-                    decode("tznvy"),
-                    "&#46;",
-                    decode("pbz"),
-                ].join("")
-            </script>
-            <p><code>&gt; mail --subject="Hello" <script type="text/javascript">document.write("<a href=" + decode("znvygb:") + m + ">" + m + "</a>");</script></code></p>
-<div id="mail-body">Cc:
-Hi Stan,
-<span class="blink">_</span></div>
-            <script type="text/javascript">
-                document.write("<pre><a href=" + decode("znvygb:") + m + ">" + document.getElementById("mail-body").innerHTML + "</a></pre>");
-            </script>
-        </div>
+            </pre></dd>
+            <dt><code>&gt; mail --subject="Hello" <script type="text/javascript">document.write("<a href=" + decode("znvygb:") + m + ">" + m + "</a>");</script></code></dt>
+            <dd>
+                <div id="mail-body">
+                Cc:<br/>
+                Hi Stan,<br/>
+                <span class="blink">_</span>
+                </div>
+                <script type="text/javascript">
+                    document.write("<a href=" + decode("znvygb:") + m + ">" + document.getElementById("mail-body").innerHTML + "</a>");
+                </script>
+            </dd>
+        </dl>
     </nav>
 </body>
 </html>
