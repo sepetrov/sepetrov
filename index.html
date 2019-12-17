@@ -9,15 +9,17 @@
         body {
             background-color: #f1f1f1;
             color: #000;
-            font-family:  'Roboto Mono', monospace;
+            font-family: 'Roboto Mono', monospace;
             font-size: 1.2em;
             line-height: 1.25;
             margin: 2em;
             font-weight: 400;
         }
+
         header, section, footer {
             margin-top: 2em;
         }
+
         h1 {
             font-family: 'Josefin Sans', sans-serif;
             font-size: 4em;
@@ -25,26 +27,48 @@
             text-shadow: 1px 1px 1px #aaa;
             font-weight: 700;
         }
-        code {
+
+        code, textarea {
             font-size: 18px;
             font-weight: 300;
         }
-        code, pre {
-            font-family:  'Roboto Mono', monospace;
+
+        code, pre, textarea {
+            font-family: 'Roboto Mono', monospace;
         }
+
         p, pre {
             margin: 0.5em 0 0 0;
             padding: 0;
         }
+
         a {
             text-decoration: none;
         }
+
         a:hover {
             text-decoration: underline;
         }
+
         pre a:hover {
             text-decoration: none;
         }
+
+        textarea {
+            background: none;
+            border: 0;
+            display: none;
+            font-size: 18px;
+            margin: 1em 0 0 0;
+            min-height: 10em;
+            min-width: 40em;
+            padding: 0;
+        }
+
+        div, button {
+            display: none;
+        }
+
         .blink {
             font-weight: 100;
             font-size: 30px;
@@ -55,6 +79,7 @@
             -o-animation: 1s blink step-end infinite;
             animation: 1s blink step-end infinite;
         }
+
         @keyframes "blink" {
             from, to {
                 color: transparent;
@@ -63,6 +88,7 @@
                 color: black;
             }
         }
+
         @-moz-keyframes blink {
             from, to {
                 color: transparent;
@@ -71,6 +97,7 @@
                 color: black;
             }
         }
+
         @-webkit-keyframes "blink" {
             from, to {
                 color: transparent;
@@ -79,6 +106,7 @@
                 color: black;
             }
         }
+
         @-ms-keyframes "blink" {
             from, to {
                 color: transparent;
@@ -87,6 +115,7 @@
                 color: black;
             }
         }
+
         @-o-keyframes "blink" {
             from, to {
                 color: transparent;
@@ -100,7 +129,7 @@
         function decode(a) {
             // ROT13 : a Caesar cipher
             // letter -> letter' such that code(letter') = (code(letter) + 13) modulo 26
-            return a.replace(/[a-zA-Z]/g, function(c){
+            return a.replace(/[a-zA-Z]/g, function (c) {
                 return String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
             })
         };
@@ -111,32 +140,63 @@
             decode("tznvy"),
             "&#46;",
             decode("pbz"),
-        ].join("")
+        ].join("");
+
+        function displayMailBody() {
+            document.getElementById("mailBodyPlaceholder").style.display = "none";
+            document.getElementById("sendButton").style.display = "block";
+            var txt = document.getElementById("mailBody");
+            txt.style.display = "block";
+            txt.focus();
+            txt.setSelectionRange(4, 4);
+        }
+
+        function sendMail() {
+            document.getElementById("sendButton").style.display = "none";
+            document.getElementById("mailBody").setAttribute("readonly", "readonly");
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://curlmail.co/' + m + '?subject=Website%20Form');
+            xhr.send(document.getElementById("mailBody").innerHTML);
+            xhr.onreadystatechange = function () {
+                var DONE = 4; // readyState 4 means the request is done.
+                var OK = 200; // status 200 is a successful return.
+                if (xhr.readyState === DONE) {
+                    if (xhr.status === OK) {
+                        console.log(xhr.responseText); // 'This is the returned text.'
+                        document.getElementById("messageStatusText").innerText = "sent";
+                    } else {
+                        console.log('Error: ' + xhr.status); // An error occurred during the request.
+                        document.getElementById("messageStatusText").innerText = "failed";
+                    }
+                    document.getElementById("messageStatus").style.display = "block";
+                }
+            };
+        }
     </script>
 </head>
 <body>
-    <header>
-            <code>&gt; whoami</code>
-            <h1>STANISLAV PETROV</h1>
-    </header>
-    <nav>
-        <section>
-            <code>&gt; pwd</code>
-            <p>/Europe/Bulgaria/Varna</p>
-        </section>
-        <section>
-            <code>&gt; echo $LINKEDIN</code>
-            <p><a href="https://uk.linkedin.com/in/sepetrov">https://uk.linkedin.com/in/sepetrov</a></p>
-        </section>
-        <section>
-            <code>&gt; git remote get-url origin</code>
-            <p><a href="https://github.com/sepetrov">https://github.com/sepetrov/sepetrov.git</a></p>
-        </section>
-    </nav>
-    <main>
-        <section>
-            <code>&gt; ps</code>
-            <pre>
+<header>
+    <code>&gt; whoami</code>
+    <h1>STANISLAV PETROV</h1>
+</header>
+<nav>
+    <section>
+        <code>&gt; pwd</code>
+        <p>/Europe/Bulgaria/Varna</p>
+    </section>
+    <section>
+        <code>&gt; echo $LINKEDIN</code>
+        <p><a href="https://uk.linkedin.com/in/sepetrov">https://uk.linkedin.com/in/sepetrov</a></p>
+    </section>
+    <section>
+        <code>&gt; git remote get-url origin</code>
+        <p><a href="https://github.com/sepetrov">https://github.com/sepetrov/sepetrov.git</a></p>
+    </section>
+</nav>
+<main>
+    <section>
+        <code>&gt; ps</code>
+        <pre>
   PID TTY          TIME CMD
 19486 pts/0    40:00:00 software-development -web
 24793 pts/1    05:00:00 motorcycle -on-road -on-track
@@ -144,16 +204,22 @@
 41485 pts/1    02:00:00 kiteboard
 52841 pts/1    01:00:00 wakeboard
             </pre>
-        </section>
-    </main>
-    <footer>
-        <code>&gt; mail --subject="Hello" <script type="text/javascript">document.write("<a href=" + decode("znvygb:") + m + ">" + m + "</a>");</script></code>
-        <pre>
-Cc:
-Hi Stan,
-<span class="blink">_</span>
+    </section>
+</main>
+<footer>
+    <code>&gt; mail --subject="Hello"
+        <script type="text/javascript">document.write("<a href=" + decode("znvygb:") + m + ">" + m + "</a>");</script>
+    </code>
+    <pre id="mailBodyPlaceholder" onclick="displayMailBody()">
+Cc: <span class="blink">_</span>
         </pre>
-    </footer>
+    <textarea id="mailBody">Cc: </textarea>
+    <button id="sendButton" onclick="sendMail()">Send</button>
+    <div id="messageStatus">
+        <pre>Message <span id="messageStatusText"></span></pre>
+        <code>&gt; <span class="blink">_</span></code>
+    </div>
+</footer>
 </body>
 </html>
 
